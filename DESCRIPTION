@@ -1,0 +1,14 @@
+Package: StatisticalQLearning
+Title: Dynamic Treatment Regimes using Q-Learning
+Version: 0.0.0.1
+Authors@R: 
+    person(given = "Joakim",
+           family = "Blach Andersen",
+           email = "blach.andersen@gmail.com",
+           role = c("aut", "cre"))
+Description: Finds an optimal treatment policy from historical data using q-learning.
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
