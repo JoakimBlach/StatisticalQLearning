@@ -4,7 +4,7 @@
 \alias{extract_formula}
 \title{Extract formula}
 \usage{
-extract_formula(outcome, dataframe)
+extract_formula(outcome, covariates)
 }
 \arguments{
 \item{outcome}{Terminal outcome of type character.}

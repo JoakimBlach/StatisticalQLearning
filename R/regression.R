@@ -4,17 +4,14 @@
 #' @keywords Dynamic treatment regime.
 #' @export
 #' @examples
-extract_formula <- function(outcome, dataframe) {
+extract_formula <- function(outcome, covariates) {
   reg_formula <- paste(outcome, "~", sep=" ")
 
-  reg_cols <- colnames(dataframe)
-  reg_cols <- reg_cols[reg_cols != outcome]
-  
-  for (col in reg_cols) {
-    if (col == reg_cols[length(reg_cols)]) {
-      reg_formula <- paste(reg_formula, col, sep=" ") 
+  for (covariate in covariates) {
+    if (covariate == covariates[-1]) {
+      reg_formula <- paste(reg_formula, covariate, sep=" ")
     } else {
-      reg_formula <- paste(reg_formula, col, "+", sep=" ") 
+      reg_formula <- paste(reg_formula, covariate, "+", sep=" ")
     }
   }
   return(reg_formula)
@@ -26,16 +23,16 @@ extract_formula <- function(outcome, dataframe) {
 #' @keywords Dynamic treatment regime.
 #' @export
 #' @examples
-stage_regression <- function(outcome, dataframe){
-  if (!is.character(outcome)) stop("outcome must a character") 
+stage_regression <- function(outcome, covariates, dataframe){
+  if (!is.character(outcome)) stop("outcome must a character")
+  if (!is.data.frame(dataframe)) stop("data must a data.frame")
 
-  if (!is.data.frame(dataframe)) stop("data must a data.frame") 
-  
   # Extract formula
-  reg_formula <- extract_formula(outcome, dataframe)
+  reg_formula <- extract_formula(outcome, covariates)
 
   # Regression
+  # TODO: Change to GAM!
   stage_reg <- lm(reg_formula, data = dataframe)
-  
+
   return(stage_reg)
 }

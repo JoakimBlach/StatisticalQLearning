@@ -4,7 +4,7 @@
 \alias{stage_regression}
 \title{Stage Regression Function}
 \usage{
-stage_regression(outcome, dataframe)
+stage_regression(outcome, covariates, dataframe)
 }
 \arguments{
 \item{outcome}{Terminal outcome of type character.}

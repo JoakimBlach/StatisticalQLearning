@@ -1,28 +1,29 @@
-#'
-#'
-#'
-#'
-optimal_policy <- function(treatment, model, dataframe) {
-  opt_tx <- list("opt_treatments" = c(), "opt_response" =c())
-  
+#' @param exposure Exposure of type character.
+#' @param model Model object.
+#' @param dataframe Dataframe of type data.frame.
+#' @keywords Dynamic treatment regime.
+#' @export
+#' @examples
+optimal_policy <- function(exposure, model, dataframe) {
+  opt_policy <- list("opt_tx" = c(), "opt_resp" =c())
+
   for (row in 1:nrow(dataframe)) {
+    # Counterfactual observation
+    counterfactual_obs <- dataframe[row, ]
+
+    # Predict counuterfactual
     predict_outcome <- function(value) {
-      # Counterfactual observation
-      counterfactual_obs <- dataframe[row, ]
-      counterfactual_obs[1, treatment] <- value
-      
-      # Model response  
-      response <- predict(reg, counterfactual_obs)  
-      
+      counterfactual_obs[1, exposure] <- value
+      response <- predict(reg, counterfactual_obs)
       return(response)
     }
-    
-    # Optimise    
+
+    # Find optimal value
     opt_res <- optim(1000, predict_outcome, method="BFGS")
-    
-    opt_tx$opt_treatments <- append(opt_tx$opt_treatments, opt_res$value)
-    opt_tx$opt_response <- append(opt_tx$opt_response, opt_res$par)
+
+    opt_policy$opt_tx <- append(opt_policy$opt_tx, opt_res$value)
+    opt_policy$opt_resp <- append(opt_policy$opt_resp, opt_res$par)
   }
-  
+
   return(opt_tx)
 }
