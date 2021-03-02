@@ -4,12 +4,12 @@
 \alias{stage_regression}
 \title{Stage Regression Function}
 \usage{
-stage_regression(outcome, covariates, dataframe)
+stage_regression(dataframe)
 }
 \arguments{
-\item{outcome}{Terminal outcome of type character.}
-
 \item{dataframe}{Dataframe of type data.frame. Must contain outcome and all observables.}
+
+\item{outcome}{Terminal outcome of type character.}
 }
 \description{
 Stage Regression Function

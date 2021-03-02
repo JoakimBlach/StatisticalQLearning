@@ -4,12 +4,12 @@
 \alias{extract_formula}
 \title{Extract formula}
 \usage{
-extract_formula(outcome, covariates)
+extract_formula(dataframe)
 }
 \arguments{
-\item{outcome}{Terminal outcome of type character.}
-
 \item{dataframe}{Dataframe of type data.frame. Must contain outcome and all observables.}
+
+\item{outcome}{Terminal outcome of type character.}
 }
 \description{
 Extract formula

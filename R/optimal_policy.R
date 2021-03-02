@@ -1,3 +1,4 @@
+#'Optimal Policy
 #' @param exposure Exposure of type character.
 #' @param model Model object.
 #' @param dataframe Dataframe of type data.frame.
@@ -14,7 +15,7 @@ optimal_policy <- function(exposure, model, dataframe) {
     # Predict counuterfactual
     predict_outcome <- function(value) {
       counterfactual_obs[1, exposure] <- value
-      response <- predict(reg, counterfactual_obs)
+      response <- predict(model, counterfactual_obs)
       return(response)
     }
 
@@ -25,5 +26,5 @@ optimal_policy <- function(exposure, model, dataframe) {
     opt_policy$opt_resp <- append(opt_policy$opt_resp, opt_res$par)
   }
 
-  return(opt_tx)
+  return(opt_policy)
 }
