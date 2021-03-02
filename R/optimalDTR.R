@@ -22,7 +22,7 @@ optimalDTR <- function(exposure, covariates, outcome, stage_column, start_stage,
 
   for (stage in start_stage:end_stage) {
     stage_name <- paste("stage", stage, sep = "")
-
+    print(paste("Running stage", stage, sep=""))
     # Stage dataframe
     stage_df <- dataframe %>% filter(get(stage_column) == stage)
 
@@ -31,7 +31,6 @@ optimalDTR <- function(exposure, covariates, outcome, stage_column, start_stage,
       response_var <- stage_df %>% select(outcome)
       covariate_vars <- stage_df %>% select(append(exposure, covariates))
       stage_df <- cbind(response_var, covariate_vars)
-
       # Stage regression with outcome as regressand
       stage_model <- stage_regression(stage_df)
     } else {

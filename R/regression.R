@@ -9,12 +9,16 @@ extract_formula <- function(dataframe) {
     if (col == colnames(dataframe)[1]) {
       reg_formula <- paste(col, "~", sep=" ")
     } else if (col == colnames(dataframe)[length(colnames(dataframe))]) {
-      reg_formula <- paste(reg_formula, col, sep=" ")
+      reg_formula <- paste(reg_formula, " ", "s(", col, ")", sep="")
+      #lm
+      #paste(reg_formula, col, sep=" ")
     } else {
-      reg_formula <- paste(reg_formula, col, "+", sep=" ")
+      reg_formula <- paste(reg_formula, " ", "s(", col, ")", " ", "+", sep="")
+      #lm
+      #reg_formula <- paste(reg_formula, col, "+", sep=" ")
     }
   }
-  return(reg_formula)
+  return(formula(reg_formula))
 }
 
 #' Stage Regression Function
@@ -24,12 +28,13 @@ extract_formula <- function(dataframe) {
 #' @export
 #' @examples
 stage_regression <- function(dataframe) {
+  print(head(dataframe))
   # Extract formula
   reg_formula <- extract_formula(dataframe)
 
   # Regression
-  # TODO: Change to GAM!
-  stage_reg <- lm(reg_formula, data = dataframe)
+  stage_reg <- gam(reg_formula, data = dataframe)
+  #  stage_reg <- lm(reg_formula, data = dataframe)
 
   return(stage_reg)
 }

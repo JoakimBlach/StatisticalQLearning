@@ -20,6 +20,7 @@ optimal_policy <- function(exposure, model, dataframe) {
     }
 
     # Find optimal value
+    print("Find optimal treatment ...")
     opt_res <- optim(1000, predict_outcome, method="BFGS")
 
     opt_policy$opt_tx <- append(opt_policy$opt_tx, opt_res$value)
