@@ -4,7 +4,7 @@
 \alias{optimal_policy}
 \title{Optimal Policy}
 \usage{
-optimal_policy(exposure, model, dataframe)
+optimal_policy(exposure, exposure_lag, model, dataframe, init_val_optim = 1000)
 }
 \arguments{
 \item{exposure}{Exposure of type character.}

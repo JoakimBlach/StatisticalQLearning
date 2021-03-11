@@ -6,8 +6,8 @@
 \usage{
 optimalDTR(
   exposure,
-  covariates,
-  outcome,
+  exposure_lag,
+  reg_formula,
   stage_column,
   start_stage,
   end_stage,
@@ -17,10 +17,6 @@ optimalDTR(
 \arguments{
 \item{exposure}{Exposure variable. Type character.}
 
-\item{covariates}{List of covariates of type characters.}
-
-\item{outcome}{Terminal outcome. Type character.}
-
 \item{stage_column}{Column to indicate stage of treatment. Type character.}
 
 \item{start_stage}{Value to indicate first stage of treatment. Type integer}
@@ -28,6 +24,8 @@ optimalDTR(
 \item{end_stage}{Value to indicate last stage of treatment. Type integer}
 
 \item{dataframe}{Dataframe of type data.frame.}
+
+\item{covariates}{List of covariates of type characters.}
 }
 \description{
 Optimal Treatment Regime

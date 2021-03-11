@@ -4,7 +4,7 @@
 \alias{stage_regression}
 \title{Stage Regression Function}
 \usage{
-stage_regression(dataframe)
+stage_regression(reg_formula, dataframe)
 }
 \arguments{
 \item{dataframe}{Dataframe of type data.frame. Must contain outcome and all observables.}

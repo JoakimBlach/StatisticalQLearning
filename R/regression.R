@@ -4,7 +4,7 @@
 #' @keywords Dynamic treatment regime.
 #' @export
 #' @examples
-extract_formula <- function(dataframe) {
+get_formula <- function(dataframe) {
   for (col in colnames(dataframe)) {
     if (col == colnames(dataframe)[1]) {
       reg_formula <- paste(col, "~", sep=" ")
@@ -27,14 +27,7 @@ extract_formula <- function(dataframe) {
 #' @keywords Dynamic treatment regime.
 #' @export
 #' @examples
-stage_regression <- function(dataframe) {
-  print(head(dataframe))
-  # Extract formula
-  reg_formula <- extract_formula(dataframe)
-
-  # Regression
+stage_regression <- function(reg_formula, dataframe) {
   stage_reg <- gam(reg_formula, data = dataframe)
-  #  stage_reg <- lm(reg_formula, data = dataframe)
-
   return(stage_reg)
 }
